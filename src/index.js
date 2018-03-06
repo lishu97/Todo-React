@@ -1,5 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TodosApp from './components/TodosApp'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import todosReducer from './reducers/todos'
+import TodosApp from './containers/TodosApp'
+import './index.css'
 
-ReactDOM.render(<TodosApp />, document.querySelector('#root'))
+const store = createStore(todosReducer)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <TodosApp />
+  </Provider>, 
+  document.querySelector('#root')
+  )
