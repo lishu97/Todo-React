@@ -5,42 +5,51 @@ import { Button, Checkbox } from 'antd'
 
 export default class TodoItem extends Component {
   static propTypes = {
-    todo: PropTypes.object,
-    changeDone: PropTypes.func,
-    delete: PropTypes.func
+    todo: PropTypes.object.isRequired,
+    onChangeDone: PropTypes.func.isRequired,
+    onDeleteTodo: PropTypes.func.isRequired
   }
-  handleChangeDone() {
+  constructor() {
+    super()
+    this._mouseOver = this._mouseOver.bind(this)
+    this._mouseOut = this._mouseOut.bind(this)
+    this.handleOnChangeDone = this.handleOnChangeDone.bind(this)
+    this.handleOnDeleteTodo = this.handleOnChangeDone.bind(this)
+  }
+  _mouseOver() {
+    ReactDOM.findDOMNode(this.refs.delButton) 
+      .style.display = 'inline-block'
+  }
+  _mouseOut() {
+    ReactDOM.findDOMNode(this.refs.delButton)
+      .style.display = 'none'
+  }
+  handleOnChangeDone() {
     const parentNode = this.refs.todoItem.parentNode
     const childNode = this.refs.todoItem
-    this.props.changeDone(indexOfChild(parentNode, childNode))
+    this.props.onChangeDone(indexOfChild(parentNode, childNode))
   }
-  handleDelete() {
+  handleOnDeleteTodo() {
     const parentNode = this.refs.todoItem.parentNode
     const childNode = this.refs.todoItem
-    this.props.delete(indexOfChild(parentNode, childNode))
-  }
-  handleMouseIn() {
-    ReactDOM.findDOMNode(this.refs.delButton).style.display = 'inline-block'
-  }
-  handleMouseOut() {
-    ReactDOM.findDOMNode(this.refs.delButton).style.display = 'none'
+    this.props.onDeleteTodo(indexOfChild(parentNode, childNode))
   }
   render() {
     const todo = this.props.todo
     return (
-      <li className="clearfix" 
+      <li className="clearfix TodoItem" 
         ref='todoItem'
-        onMouseOver={this.handleMouseIn.bind(this)}
-        onMouseOut={this.handleMouseOut.bind(this)}>
+        onMouseOver={this._mouseOver}
+        onMouseOut={this._mouseOut}>
         <div>
           <Checkbox checked={this.props.todo.isDone}
-            onClick={this.handleChangeDone.bind(this)} />
+            onClick={this.handleOnChangeDone} />
           <p className='time'>{todo.date}{todo.time}</p>
           <Button type="danger" 
             size="small"
-            onClick={this.handleDelete.bind(this)}
+            onClick={this.handleOnDeleteTodo}
             ref='delButton'>删除</Button>
-        </div>        
+        </div>
         <p className='content'>{todo.content}</p>
       </li>
     )
@@ -52,7 +61,7 @@ function indexOfChild(parentNode, childNode) {
   parentNode.childNodes.forEach((node, i) => {
     if(node === childNode) {
       index = i
-      return 
+      return null
     }
   })
   return index

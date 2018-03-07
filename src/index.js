@@ -12,5 +12,4 @@ ReactDOM.render(
   <Provider store={store}>
     <TodosApp />
   </Provider>, 
-  document.querySelector('#root')
-  )
+  document.querySelector('#root'))
