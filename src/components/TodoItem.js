@@ -32,7 +32,6 @@ export default class TodoItem extends Component {
         ref='todoItem'
         onMouseOver={this.handleMouseIn.bind(this)}
         onMouseOut={this.handleMouseOut.bind(this)}>
-        {/*使用label*/}
         <div>
           <Checkbox checked={this.props.todo.isDone}
             onClick={this.handleChangeDone.bind(this)} />

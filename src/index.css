@@ -16,7 +16,7 @@
 .wraper .todosMain .todosItems li > div:first-of-type { padding: 3px; position: relative; }
 .wraper .todosMain .todosItems li > div:first-of-type .time { display: inline-block; margin: 0px 0 0 10px; }
 .wraper .todosMain .todosItems li > div:first-of-type .ant-btn { position: absolute; right: 0; top: 2px; height: 29px; display: none; }
-.wraper .todosMain .todosItems li .content { padding: 5px 0 10px 0; box-sizing: border-box; width: 100%; font-size: 16px; margin: 0; word-wrap: break-word; word-break: break-all; overflow: hidden; }
+.wraper .todosMain .todosItems li .content { padding: 5px 10px 10px; box-sizing: border-box; width: 100%; font-size: 16px; margin: 0; word-wrap: break-word; word-break: break-all; overflow: hidden; }
 .wraper .todosFooter { padding: 3px; display: flex; justify-content: space-between; }
 .wraper .todosFooter > span:first-of-type .selectAll { margin-left: 10px; }
 

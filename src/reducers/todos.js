@@ -3,6 +3,7 @@ const INIT_TODOS = 'INIT_TODOS'
 const INIT_USERNAME = 'INIT_USERNAME'
 const ADD_TODO = 'ADD_TODO'
 const DELETE_TODO = 'DELETE_TODO'
+const DELETE_ALL_TODOS = 'DELETE_ALL_TODOS'
 const CHANGE_DONE = 'CHANGE_DONE'
 const CHANGE_ALL_DONE = 'CHANGE_ALL_DONE'
 const SIGN_IN = 'SIGN_IN'
@@ -47,6 +48,17 @@ export default function(state, action) {
           ...state.todos.slice(action.todoIndex + 1)
         ]
       }
+    case DELETE_ALL_TODOS:
+    // 删除已完成
+      const lastTodos = []
+      state.todos.map((todo, index) => {
+        if(!todo.isDone) {
+          lastTodos.push(todo)
+        }
+        return null
+      })
+      console.log(lastTodos)
+      return {...state, todos: lastTodos }
     case CHANGE_DONE:
       // 修改
       const preTodo = state.todos[action.todoIndex]
@@ -102,6 +114,9 @@ export const addTodo = (todo) => {
 }
 export const deleteTodo = (todoIndex) => {
   return { type: DELETE_TODO, todoIndex: todoIndex}
+}
+export const deleteAllTodos = () => {
+  return { type: DELETE_ALL_TODOS}
 }
 export const changeDone = (todoIndex) => {
   return { type: CHANGE_DONE, todoIndex: todoIndex}

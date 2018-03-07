@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Checkbox, Button } from 'antd'
-import { changeAllDone } from '../reducers/todos'
+import { changeAllDone, deleteAllTodos } from '../reducers/todos'
 
 class TodosFooter extends Component {
   static propTypes = {
@@ -23,6 +23,7 @@ class TodosFooter extends Component {
   }
   componentWillReceiveProps(newprops) {
     this._initState(newprops.todos)
+    localStorage.setItem(newprops.userName, JSON.stringify(newprops.todos))
   }
   _initState(todos) {
     let flag = true
@@ -43,6 +44,7 @@ class TodosFooter extends Component {
     })
   }
   _deleteCompleted(e) {
+    this.props.deleteAllTodos()
 
   }
   render() {
@@ -70,7 +72,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    changeTodosDone: (isDone) => {dispatch(changeAllDone(isDone))}
+    changeTodosDone: (isDone) => {dispatch(changeAllDone(isDone))},
+    deleteAllTodos: () => {dispatch(deleteAllTodos())}
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TodosFooter)

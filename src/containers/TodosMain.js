@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import TodoItem from '../components/TodoItem'
+import TodosFooter from './TodosFooter'
 import { Input } from 'antd'
 import { initTodos, addTodo, deleteTodo, changeDone } from '../reducers/todos'
 
@@ -73,20 +74,22 @@ class TodosMain extends Component {
   render() {
     const UnSignIn = <div className="unSignIn">请在登录后使用</div>
     const TodoEmpty = <div className="todoEmpty">目前没有待办任务</div>
-    const TodosItems =  <ul className="todosItems">
-                          {this.props.todos.map((todo, index) => {
-                            return (<TodoItem 
-                              key={index}
-                              todo={todo}
-                              changeDone={this.handleChangeDone.bind(this)}
-                              delete={this.handleDelete.bind(this)}/>
-                            )
-                          })}
-                        </ul>
+    const TodosItems =  <div>
+                          <ul className="todosItems">
+                            {this.props.todos.map((todo, index) => {
+                              return (<TodoItem 
+                                key={index}
+                                todo={todo}
+                                changeDone={this.handleChangeDone.bind(this)}
+                                delete={this.handleDelete.bind(this)}/>
+                              )
+                            })}
+                          </ul>
+                          <TodosFooter />
+                        </div>
     if(!this.props.userName) {
       return UnSignIn
     } else {
-      // FIXME:无法输入
       return (
         <div className="todosMain">
           <Input className="todoInput" 
