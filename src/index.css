@@ -1,24 +1,100 @@
-.wraper { width: 60%; margin: 20px auto 20px; }
-.wraper .TodosHeader h2 { margin: 30px 0 16px; color: red; font-family: 'Weibei TC'; text-align: center; }
-.wraper .TodosHeader .welcome { float: left; line-height: 32px; }
-.wraper .TodosHeader .signOut { float: right; padding: 0px 8px; }
-.wraper .TodosHeader .signInBox { position: absolute; height: 100%; width: 100%; background: rgba(0, 0, 0, 0.4); z-index: 1; left: 0; top: 0; display: flex; justify-content: center; align-items: center; }
-.wraper .TodosHeader .signInBox .container { background: #fff; position: relative; width: 400px; border-radius: 5px; }
-.wraper .TodosHeader .signInBox .container .ant-input { display: block; width: 80%; margin: 40px auto 20px; }
-.wraper .TodosHeader .signInBox .container .closeBtn { position: absolute; top: 7px; right: 7px; border: none; background: transparent; }
-.wraper .TodosHeader .signInBox .container .footer { display: flex; justify-content: center; margin-bottom: 30px; }
-.wraper .TodosHeader .signInBox .container .footer button { margin: 0 20px; }
-.wraper .unSignIn { text-align: center; margin-top: 10px; }
-.wraper .todosMain .todoInput { width: 100%; margin: 16px 0; }
-.wraper .todosMain .todoEmpty { text-align: center; }
-.wraper .todosMain .todosItems { padding: 0; }
-.wraper .todosMain .todosItems li { list-style: none; position: relative; }
-.wraper .todosMain .todosItems li > div:first-of-type { padding: 3px; position: relative; }
-.wraper .todosMain .todosItems li > div:first-of-type .time { display: inline-block; margin: 0px 0 0 10px; }
-.wraper .todosMain .todosItems li > div:first-of-type .ant-btn { position: absolute; right: 0; top: 2px; height: 29px; display: none; }
-.wraper .todosMain .todosItems li .content { padding: 5px 10px 10px; box-sizing: border-box; width: 100%; font-size: 16px; margin: 0; word-wrap: break-word; word-break: break-all; overflow: hidden; }
-.wraper .todosFooter { padding: 3px; display: flex; justify-content: space-between; }
-.wraper .todosFooter > span:first-of-type .selectAll { margin-left: 10px; }
+.wraper {
+  width: 60%;
+  margin: 20px auto 20px; }
+  .wraper .SignInAndSignUp {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .wraper .SignInAndSignUp .box {
+      background: #fff;
+      position: relative;
+      width: 400px;
+      border-radius: 5px; }
+      .wraper .SignInAndSignUp .box .tip {
+        margin: 30px auto 0;
+        width: 80%;
+        height: 1em; }
+      .wraper .SignInAndSignUp .box .username {
+        display: block;
+        width: 80%;
+        margin: 10px auto; }
+      .wraper .SignInAndSignUp .box .password {
+        display: block;
+        width: 80%;
+        margin: 0 auto 20px; }
+      .wraper .SignInAndSignUp .box .closeBtn {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        border: none;
+        background: transparent; }
+      .wraper .SignInAndSignUp .box .bottom {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px; }
+        .wraper .SignInAndSignUp .box .bottom button {
+          margin: 0 20px; }
+  .wraper .TodosHeader h2 {
+    margin: 30px 0 16px;
+    color: red;
+    font-family: 'Weibei TC';
+    text-align: center; }
+  .wraper .TodosHeader .welcome {
+    float: left;
+    line-height: 32px; }
+  .wraper .TodosHeader .signOut {
+    float: right;
+    padding: 0px 8px; }
+  .wraper .unSignIn {
+    text-align: center;
+    margin-top: 10px; }
+  .wraper .todosMain .todoInput {
+    width: 100%;
+    margin: 16px 0; }
+  .wraper .todosMain .todoEmpty {
+    text-align: center; }
+  .wraper .todosMain .todosItems {
+    padding: 0; }
+    .wraper .todosMain .todosItems li {
+      list-style: none;
+      position: relative; }
+      .wraper .todosMain .todosItems li > div:first-of-type {
+        padding: 3px;
+        position: relative; }
+        .wraper .todosMain .todosItems li > div:first-of-type .time {
+          display: inline-block;
+          margin: 0px 0 0 10px; }
+        .wraper .todosMain .todosItems li > div:first-of-type .ant-btn {
+          position: absolute;
+          right: 0;
+          top: 2px;
+          height: 29px;
+          display: none; }
+      .wraper .todosMain .todosItems li .content {
+        padding: 5px 10px 10px;
+        box-sizing: border-box;
+        width: 100%;
+        font-size: 16px;
+        margin: 0;
+        word-wrap: break-word;
+        word-break: break-all;
+        overflow: hidden; }
+  .wraper .todosFooter {
+    padding: 3px;
+    display: flex;
+    justify-content: space-between; }
+    .wraper .todosFooter > span:first-of-type .selectAll {
+      margin-left: 10px; }
 
-.clearfix::after, .clearfix::before { content: ""; display: table; }
-.clearfix::after { clear: both; }
+.clearfix::after, .clearfix::before {
+  content: "";
+  display: table; }
+.clearfix::after {
+  clear: both; }

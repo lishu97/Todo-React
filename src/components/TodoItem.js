@@ -14,7 +14,7 @@ export default class TodoItem extends Component {
     this._mouseOver = this._mouseOver.bind(this)
     this._mouseOut = this._mouseOut.bind(this)
     this.handleOnChangeDone = this.handleOnChangeDone.bind(this)
-    this.handleOnDeleteTodo = this.handleOnChangeDone.bind(this)
+    this.handleOnDeleteTodo = this.handleOnDeleteTodo.bind(this)
   }
   _mouseOver() {
     ReactDOM.findDOMNode(this.refs.delButton) 

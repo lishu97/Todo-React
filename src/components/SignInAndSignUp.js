@@ -13,7 +13,8 @@ export default class SignInAndSignUp extends Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      alert: ''
     }
     // 全部在初始化中 bind(this)
     this._usernameChange = this._usernameChange.bind(this)
@@ -60,10 +61,12 @@ export default class SignInAndSignUp extends Component {
     this.props.onClose()
   }
   render() {
+    const alert = '提示：' + this.state.alert
     return (
       <div className="SignInAndSignUp mask">
         <div className="box">
           <Button className='closeBtn' onClick={this.handleOnClose}>✖</Button>
+          <p className='tip'>{this.state.alert ? alert : ''}</p>
           <Input className='username'
             value={this.state.username} 
             placeholder='请输入用户名'
@@ -75,8 +78,7 @@ export default class SignInAndSignUp extends Component {
             placeholder='请输入密码'
             ref='password'
             onChange={this._passwordChange}
-            onPressEnter={this.handleOnSignIn} />
-          <p>{this.state.alert}</p>
+            onPressEnter={this.handleOnSignIn} />          
           <div className="bottom">
             <Button type='primary' onClick={this.handleOnSignIn} >登录</Button>
             <Button onClick={this.handleOnSignUp}>注册</Button>

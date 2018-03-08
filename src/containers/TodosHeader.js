@@ -33,12 +33,12 @@ class TodosHeader extends Component {
   }
   // 初始化用户名
   _loadUsername() {
-    const username = this.props.username
+    const username = localStorage.getItem('username')
     this.props.initUsername(username)
   }
   // 初始化登录框显示状态
   _loadSignInAndSignUp() {
-    const isSignIn = this.props.username ? true : false
+    const isSignIn = localStorage.getItem('username') ? true : false
     this.setState({ isShowSignInAndSignUp: !isSignIn })
   }
   // 控制登录框的显示和关闭

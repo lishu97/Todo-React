@@ -8,7 +8,7 @@ import { initTodos, addTodo, deleteTodo, changeDone } from '../reducers/todos'
 
 class TodosMain extends Component {
   static propTypes = {
-    userName: PropTypes.string,
+    username: PropTypes.string,
     todos: PropTypes.array,
     initTodos: PropTypes.func,
     addTodo: PropTypes.func,
@@ -19,15 +19,22 @@ class TodosMain extends Component {
     this.state = {
       inputValue: ''
     }
-    this.handleChangeDone = this.handleChangeDone.bind(this)
+    this._inputChange = this._inputChange.bind(this)
+    this._initTodos = this._initTodos.bind(this)
+    this._addTodo = this._addTodo.bind(this)
+    this._deleteTodo = this._deleteTodo.bind(this)
+    this._changeTodo = this._changeTodo.bind(this)
   }
   componentWillMount() {
-    if(!this.props.userName) {
+    this._initTodos()
+  }
+  _initTodos() {
+    if(!this.props.username) {
       // 未登录
       this.props.initTodos([])
     } else {
       // 已登录
-      let todos = localStorage.getItem(this.props.userName)
+      let todos = localStorage.getItem(this.props.username)
       todos = todos ? JSON.parse(todos) : []
       this.props.initTodos(todos)
     }
@@ -40,7 +47,7 @@ class TodosMain extends Component {
       const todo = { date, time, content, isDone }
       let newTodos = [ ...this.props.todos, todo ]  
       newTodos = JSON.stringify(newTodos)
-      localStorage.setItem(this.props.userName, newTodos)
+      localStorage.setItem(this.props.username, newTodos)
       this.props.addTodo(todo)
       this.setState({ inputValue: '' })
     }    
@@ -48,31 +55,24 @@ class TodosMain extends Component {
   _deleteTodo(index) {
     const todos = this.props.todos
     const newTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
-    localStorage.setItem(this.props.userName, JSON.stringify(newTodos))
+    localStorage.setItem(this.props.username, JSON.stringify(newTodos))
     this.props.deleteTodo(index)
   }
   _changeTodo(index) {
-    // const todos = JSON.parse(localStorage.getItem(this.props.userName))
     let todos = this.props.todos
     let newTodos = [
       ...todos.slice(0, index), 
       { ...todos[index], isDone: !todos[index].isDone },
       ...todos.slice(index + 1)
     ]
-    localStorage.setItem(this.props.userName, JSON.stringify(newTodos))
+    localStorage.setItem(this.props.username, JSON.stringify(newTodos))
     this.props.changeDone(index)
   }
-  handleChangeDone(index) {
-    this._changeTodo(index)
-  }
-  handleDelete(index) {
-    this._deleteTodo(index)
-  }
-  handleInputChange(e) {
+  _inputChange(e) {
     this.setState({ inputValue: e.target.value })
   }
   render() {
-    const UnSignIn = <div className="unSignIn">请在登录后使用</div>
+    const UnsignIn = <div className="unSignIn">请在登录后使用</div>
     const TodoEmpty = <div className="todoEmpty">目前没有待办任务</div>
     const TodosItems =  <div>
                           <ul className="todosItems">
@@ -80,15 +80,15 @@ class TodosMain extends Component {
                               return (<TodoItem 
                                 key={index}
                                 todo={todo}
-                                changeDone={this.handleChangeDone.bind(this)}
-                                delete={this.handleDelete.bind(this)}/>
+                                onChangeDone={this._changeTodo}
+                                onDeleteTodo={this._deleteTodo}/>
                               )
                             })}
                           </ul>
                           <TodosFooter />
                         </div>
-    if(!this.props.userName) {
-      return UnSignIn
+    if(!this.props.username) {
+      return UnsignIn
     } else {
       return (
         <div className="todosMain">
@@ -96,8 +96,8 @@ class TodosMain extends Component {
             autoFocus
             value={this.state.inputValue}
             placeholder='请输入待办事项，按回车键确认'
-            onPressEnter={this._addTodo.bind(this)} 
-            onChange={this.handleInputChange.bind(this)}
+            onPressEnter={this._addTodo} 
+            onChange={this._inputChange}
             ref='input' />
           { 
             this.props.todos.length === 0 
@@ -124,7 +124,7 @@ function getTime(){
 }
 const mapStateToProps = (state) => {
   return {
-    userName: state.userName,
+    username: state.username,
     todos: state.todos
   }
 }

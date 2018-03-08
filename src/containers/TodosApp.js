@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TodosHeader from './TodosHeader'
-// import TodosMain from './TodosMain'
+import TodosMain from './TodosMain'
 import 'antd/dist/antd.css'
 
 export default class TodosApp extends Component {
@@ -8,7 +8,7 @@ export default class TodosApp extends Component {
     return (
       <div className="wraper">
         <TodosHeader />
-        {/*<TodosMain />*/}
+        <TodosMain />
       </div>
     )
   }

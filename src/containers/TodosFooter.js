@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Checkbox, Button } from 'antd'
-import { changeAllDone, deleteAllTodos } from '../reducers/todos'
+import { changeAllDone, deleteTodos } from '../reducers/todos'
 
 class TodosFooter extends Component {
   static propTypes = {
-    userName: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
     todos: PropTypes.array.isRequired,
     changeTodosDone: PropTypes.func.isRequired
   }
@@ -23,7 +23,7 @@ class TodosFooter extends Component {
   }
   componentWillReceiveProps(newprops) {
     this._initState(newprops.todos)
-    localStorage.setItem(newprops.userName, JSON.stringify(newprops.todos))
+    localStorage.setItem(newprops.username, JSON.stringify(newprops.todos))
   }
   _initState(todos) {
     let flag = true
@@ -40,11 +40,11 @@ class TodosFooter extends Component {
     this.props.changeTodosDone(!this.state.selectAll)
     this.setState({ selectAll: !this.state.selectAll}, () => {
       const todosString = JSON.stringify(this.props.todos)
-      localStorage.setItem(this.props.userName, todosString)
+      localStorage.setItem(this.props.username, todosString)
     })
   }
   _deleteCompleted(e) {
-    this.props.deleteAllTodos()
+    this.props.deleteTodos()
 
   }
   render() {
@@ -66,14 +66,14 @@ class TodosFooter extends Component {
 }
 function mapStateToProps(state) {
   return {
-    userName: state.userName,
+    username: state.username,
     todos: state.todos
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
     changeTodosDone: (isDone) => {dispatch(changeAllDone(isDone))},
-    deleteAllTodos: () => {dispatch(deleteAllTodos())}
+    deleteTodos: () => {dispatch(deleteTodos())}
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TodosFooter)

@@ -1,6 +1,54 @@
 .wraper {
     width: 60%;
     margin: 20px auto 20px;
+    .SignInAndSignUp {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, .4);
+        z-index: 1;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .box {
+            background: #fff;
+            position: relative;
+            width: 400px;
+            border-radius: 5px;
+            .tip {
+                margin: 30px auto 0;
+                width: 80%;
+                height: 1em;
+            }
+            .username {
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+            .password {
+                display: block;
+                width: 80%;
+                margin: 0 auto 20px;
+            }
+            .closeBtn {
+                position: absolute;
+                top: 7px;
+                right: 7px;
+                border: none;
+                background: transparent;
+            }
+            .bottom {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+                button {
+                    margin: 0 20px;
+                }
+            }
+        }
+    }
     .TodosHeader {
         h2 {
             margin: 30px 0 16px;
@@ -16,44 +64,7 @@
             float: right;
             padding: 0px 8px;
         }
-        .signInBox {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background: rgba(0, 0, 0, .4);
-            z-index: 1;
-            left: 0;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .container {
-                background: #fff;
-                position: relative;
-                width: 400px;
-                border-radius: 5px;
-                .ant-input {
-                    display: block;
-                    width: 80%;
-                    margin: 40px auto 20px;
-                }
-                .closeBtn {
-                    position: absolute;
-                    top: 7px;
-                    right: 7px;
-                    border: none;
-                    background: transparent;
-                }
-                .footer {
-                    display: flex;
-                    justify-content: center;
-                    margin-bottom: 30px;
-                    button {
-                        margin: 0 20px;
-                    }
-                }
-            }
-        }
+        
     }
     .unSignIn {
         text-align: center;
